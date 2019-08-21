@@ -1,0 +1,95 @@
+[WARN] Maven will be executed in interactive mode, but no input stream has been configured for this MavenInvoker instance.
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------< com.alexperal.maventool:maventool >------------------
+[INFO] Building maventool 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ maventool ---
+[INFO] com.alexperal.maventool:maventool:jar:1.0-SNAPSHOT
+[INFO] +- org.apache.maven.shared:maven-invoker:jar:3.0.1:compile
+[INFO] |  +- org.apache.maven.shared:maven-shared-utils:jar:3.2.1:compile
+[INFO] |  |  \- commons-io:commons-io:jar:2.5:compile
+[INFO] |  \- org.codehaus.plexus:plexus-component-annotations:jar:1.7.1:compile
+[INFO] +- io.ultreia.java4all.jaxx:jaxx-runtime:jar:3.0-alpha-55:compile
+[INFO] |  +- io.ultreia.java4all.jaxx:jaxx-runtime-spi:jar:3.0-alpha-55:compile
+[INFO] |  |  +- (io.ultreia.java4all:java-bean:jar:0.0.9:compile - omitted for duplicate)
+[INFO] |  |  \- (org.apache.logging.log4j:log4j-api:jar:2.12.0:compile - omitted for duplicate)
+[INFO] |  +- org.nuiton:nuiton-decorator:jar:3.0:compile
+[INFO] |  |  +- commons-jxpath:commons-jxpath:jar:1.3:compile
+[INFO] |  |  +- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  |  \- (commons-beanutils:commons-beanutils:jar:1.9.2:compile - omitted for conflict with 1.9.3)
+[INFO] |  +- org.nuiton:nuiton-converter:jar:1.0:compile
+[INFO] |  |  +- (commons-logging:commons-logging:jar:1.2:compile - omitted for duplicate)
+[INFO] |  |  \- (commons-beanutils:commons-beanutils:jar:1.9.2:compile - omitted for duplicate)
+[INFO] |  +- io.ultreia.java4all:java-lang:jar:2.0.2:compile
+[INFO] |  |  \- (org.apache.logging.log4j:log4j-api:jar:2.11.1:compile - omitted for conflict with 2.12.0)
+[INFO] |  +- io.ultreia.java4all:java-bean:jar:0.0.9:compile
+[INFO] |  |  +- (com.google.guava:guava:jar:27.0-jre:compile - omitted for conflict with 28.0-jre)
+[INFO] |  |  \- (io.ultreia.java4all:java-util:jar:1.0.7:compile - omitted for conflict with 1.0.8)
+[INFO] |  +- io.ultreia.java4all:java-util:jar:1.0.8:compile
+[INFO] |  +- io.ultreia.java4all.i18n:i18n-spi:jar:4.0-beta-9:compile
+[INFO] |  |  +- (org.nuiton:nuiton-converter:jar:1.0:compile - omitted for duplicate)
+[INFO] |  |  \- (org.apache.logging.log4j:log4j-api:jar:2.11.2:compile - omitted for conflict with 2.12.0)
+[INFO] |  +- io.ultreia.java4all.i18n:i18n-runtime:jar:4.0-beta-9:compile
+[INFO] |  |  +- (io.ultreia.java4all.i18n:i18n-spi:jar:4.0-beta-9:compile - omitted for duplicate)
+[INFO] |  |  +- (io.ultreia.java4all:java-util:jar:1.0.7:compile - omitted for conflict with 1.0.8)
+[INFO] |  |  +- org.nuiton:nuiton-version:jar:1.0-rc-2:compile
+[INFO] |  |  |  +- (org.apache.commons:commons-lang3:jar:3.4:compile - omitted for conflict with 3.9)
+[INFO] |  |  |  +- (commons-logging:commons-logging:jar:1.2:compile - omitted for duplicate)
+[INFO] |  |  |  +- (org.apache.commons:commons-collections4:jar:4.1:compile - omitted for conflict with 4.3)
+[INFO] |  |  |  +- (commons-beanutils:commons-beanutils:jar:1.9.2:compile - omitted for duplicate)
+[INFO] |  |  |  +- (com.google.guava:guava:jar:19.0:compile - omitted for conflict with 27.0-jre)
+[INFO] |  |  |  \- (org.nuiton:nuiton-converter:jar:1.0:compile - omitted for duplicate)
+[INFO] |  |  +- (com.google.guava:guava:jar:28.0-jre:compile - omitted for conflict with 27.0-jre)
+[INFO] |  |  +- (org.apache.commons:commons-collections4:jar:4.3:compile - omitted for conflict with 4.4)
+[INFO] |  |  +- (commons-io:commons-io:jar:2.6:compile - omitted for conflict with 2.5)
+[INFO] |  |  \- (org.apache.logging.log4j:log4j-api:jar:2.11.2:compile - omitted for conflict with 2.12.0)
+[INFO] |  +- org.apache.commons:commons-lang3:jar:3.9:compile
+[INFO] |  +- org.apache.logging.log4j:log4j-api:jar:2.12.0:compile
+[INFO] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.9.3:compile
+[INFO] |  |  +- (commons-logging:commons-logging:jar:1.2:compile - omitted for duplicate)
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  +- com.google.guava:guava:jar:28.0-jre:compile
+[INFO] |  |  +- com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO] |  |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO] |  |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  |  +- org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO] |  |  +- com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO] |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.17:compile
+[INFO] |  +- org.swinglabs.swingx:swingx-common:jar:1.6.5-1:compile
+[INFO] |  +- org.swinglabs.swingx:swingx-painters:jar:1.6.5-1:compile
+[INFO] |  |  \- (org.swinglabs.swingx:swingx-common:jar:1.6.5-1:compile - omitted for duplicate)
+[INFO] |  +- org.swinglabs:jxlayer:jar:3.0.4:compile
+[INFO] |  \- org.swinglabs.swingx:swingx-core:jar:1.6.5-1:compile
+[INFO] |     +- org.swinglabs.swingx:swingx-autocomplete:jar:1.6.5-1:compile
+[INFO] |     |  \- (org.swinglabs.swingx:swingx-common:jar:1.6.5-1:compile - omitted for duplicate)
+[INFO] |     +- org.swinglabs.swingx:swingx-action:jar:1.6.5-1:compile
+[INFO] |     +- org.swinglabs.swingx:swingx-plaf:jar:1.6.5-1:compile
+[INFO] |     |  \- (org.swinglabs.swingx:swingx-common:jar:1.6.5-1:compile - omitted for duplicate)
+[INFO] |     +- org.swinglabs.swingx:swingx-graphics:jar:1.6.5-1:compile
+[INFO] |     |  \- (org.swinglabs.swingx:swingx-common:jar:1.6.5-1:compile - omitted for duplicate)
+[INFO] |     \- (org.swinglabs.swingx:swingx-painters:jar:1.6.5-1:compile - omitted for duplicate)
+[INFO] +- org.apache.poi:poi:jar:4.1.0:compile
+[INFO] |  +- commons-codec:commons-codec:jar:1.12:compile
+[INFO] |  +- (org.apache.commons:commons-collections4:jar:4.3:compile - omitted for conflict with 4.4)
+[INFO] |  \- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] \- org.junit.jupiter:junit-jupiter-engine:jar:5.5.1:test
+[INFO]    +- org.apiguardian:apiguardian-api:jar:1.1.0:test
+[INFO]    +- org.junit.platform:junit-platform-engine:jar:1.5.1:test
+[INFO]    |  +- (org.apiguardian:apiguardian-api:jar:1.1.0:test - omitted for duplicate)
+[INFO]    |  +- org.opentest4j:opentest4j:jar:1.2.0:test
+[INFO]    |  \- org.junit.platform:junit-platform-commons:jar:1.5.1:test
+[INFO]    |     \- (org.apiguardian:apiguardian-api:jar:1.1.0:test - omitted for duplicate)
+[INFO]    \- org.junit.jupiter:junit-jupiter-api:jar:5.5.1:test
+[INFO]       +- (org.apiguardian:apiguardian-api:jar:1.1.0:test - omitted for duplicate)
+[INFO]       +- (org.opentest4j:opentest4j:jar:1.2.0:test - omitted for duplicate)
+[INFO]       \- (org.junit.platform:junit-platform-commons:jar:1.5.1:test - omitted for duplicate)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.494 s
+[INFO] Finished at: 2019-08-21T23:05:39+02:00
+[INFO] ------------------------------------------------------------------------
