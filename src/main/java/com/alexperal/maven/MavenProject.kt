@@ -1,17 +1,19 @@
 package com.alexperal.maven
 
-import java.util.ArrayList
+import com.google.common.graph.GraphBuilder
+import com.google.common.graph.MutableGraph
 
 
 class MavenProject {
-    private val compileDeps = ArrayList<Dependency>()
-    val id: MavenProjectId? = null
+    private val compileDeps: MutableGraph<Dependency> = GraphBuilder.directed().build()
+    var id: MavenProjectId? = null
 
-    fun compileDeps(): List<Dependency> {
+    fun dependencies(): MutableGraph<Dependency> {
         return compileDeps
     }
 
-    fun addRootDependency(dependency: Dependency) {
-        this.compileDeps.add(dependency)
+    fun addDependency(fatherDependency: Dependency?, dependency: Dependency) {
+        this.compileDeps.addNode(dependency)
+        fatherDependency?.let { this.compileDeps.putEdge(it, dependency) }
     }
 }
