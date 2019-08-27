@@ -1,13 +1,39 @@
-package com.alexperal.maven
+package com.alexperal.maven.parser
 
+import com.alexperal.maven.models.Dependency
+import com.alexperal.maven.models.MavenProject
+import java.io.IOException
+import java.nio.file.Files
+import java.nio.file.Path
 import java.util.*
+import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
+import java.util.concurrent.Executors
 import java.util.regex.Pattern
 
 class MavenParser {
 
+    fun parseDocument(document: Path): MavenProject {
+        val queue = ArrayBlockingQueue<String>(1000)
+        val executorService = Executors.newCachedThreadPool()
+        executorService.submit {
+            try {
+                Files.newBufferedReader(document).useLines { it.forEach { it2 -> queue.put(it2) } }
+                queue.put(MavenParser.poisonPill)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            }
+        }
+        executorService.shutdown()
+        return parse(queue)
+
+
+    }
+
     fun parse(queue: BlockingQueue<String>): MavenProject {
-        val mavenProject = MavenProject()
+        val mavenProject = MavenProjectBuilder()
         val dependencyStack = Stack<Dependency>()
         var started = false
         var line: String = queue.take()
@@ -22,19 +48,19 @@ class MavenParser {
             }
             line = queue.take();
         }
-        return mavenProject
+        return mavenProject.build()
     }
 
-    private fun handleDependency(line: String, mavenProject: MavenProject, dependencyStack: Stack<Dependency>) {
+    private fun handleDependency(line: String, mavenProjectBuilder: MavenProjectBuilder, dependencyStack: Stack<Dependency>) {
         val dependency = replaceInfoLine(line)
         when {
-            isProject(dependency) -> processProject(dependency, mavenProject)
-            isDependency(dependency) -> processRootDependency(dependency, mavenProject, dependencyStack)
+            isProject(dependency) -> processProject(dependency, mavenProjectBuilder)
+            isDependency(dependency) -> processRootDependency(dependency, mavenProjectBuilder, dependencyStack)
         }
         println(dependency)
     }
 
-    private fun processRootDependency(line: String, mavenProject: MavenProject, dependencyStack: Stack<Dependency>) {
+    private fun processRootDependency(line: String, mavenProjectBuilder: MavenProjectBuilder, dependencyStack: Stack<Dependency>) {
         val matcher = DEPENDENCY_PATTERN.matcher(line)
         if (matcher.matches()) {
             val depthLevel = dependencyDepthLevel(matcher.group(1), line)
@@ -45,7 +71,7 @@ class MavenParser {
                 lastDependencyDepth = dependencyStack.size
             }
             val fatherDependency = if (depthLevel == 0) null else dependencyStack.peek()
-            mavenProject.addDependency(fatherDependency, dependency)
+            mavenProjectBuilder.addDependency(fatherDependency, dependency)
             dependencyStack.push(dependency)
             if (depthLevel > lastDependencyDepth) {
                 throw IllegalArgumentException()
@@ -77,14 +103,14 @@ class MavenParser {
         return !isProject(dependency)
     }
 
-    private fun processProject(dependency: String, mavenProject: MavenProject) {
+    private fun processProject(dependency: String, mavenProjectBuilder: MavenProjectBuilder) {
         val matcher = PROJECT_ID_PATTERN.matcher(dependency)
         if (matcher.matches()) {
             val group = matcher.group(1)
             val artifact = matcher.group(2)
             val type = matcher.group(3)
             val version = matcher.group(4)
-            mavenProject.id = MavenProjectId(group, artifact, version, type)
+            mavenProjectBuilder.setId(group, artifact, version, type)
         }
     }
 
