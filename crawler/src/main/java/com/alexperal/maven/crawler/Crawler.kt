@@ -6,8 +6,11 @@ import com.alexperal.maven.models.MavenProject
 import com.alexperal.maven.parser.MavenParser
 import java.nio.file.Path
 
+interface Resolver {
+    fun resolve(id: MavenId): Path
+}
 
-class Crawler(private val crawlDirectory: Path) {
+class Crawler(private val mavenHome: String, private val resolver: (MavenId) -> Path) {
     private val frontier: MutableSet<MavenId> = mutableSetOf()
     val crawled: MutableSet<MavenId> = mutableSetOf()
 
@@ -27,16 +30,12 @@ class Crawler(private val crawlDirectory: Path) {
     }
 
     private fun crawl(seed: MavenId): MavenProject {
-        val seedPath = retrieveSeed(crawlDirectory, seed)
+        val seedPath = resolver(seed)
         return parseSeed(seedPath)
     }
 
     private fun parseSeed(seedPath: Path): MavenProject {
-        return MavenParser().parseDocument(seedPath);
-    }
-
-    private fun retrieveSeed(crawlDirectory: Path, seed: MavenId): Path {
-        return crawlDirectory;
+        return MavenParser(mavenHome).parsePom(seedPath);
     }
 
 

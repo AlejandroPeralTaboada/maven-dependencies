@@ -2,6 +2,9 @@ package com.alexperal.maven.parser
 
 import com.alexperal.maven.models.Dependency
 import com.alexperal.maven.models.MavenProject
+import org.apache.maven.shared.invoker.DefaultInvocationRequest
+import org.apache.maven.shared.invoker.DefaultInvoker
+import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
@@ -11,7 +14,25 @@ import java.util.concurrent.BlockingQueue
 import java.util.concurrent.Executors
 import java.util.regex.Pattern
 
-class MavenParser {
+
+class MavenParser(val mavenHome: String) {
+
+
+    fun parsePom(pomPath: Path): MavenProject {
+        val queue = ArrayBlockingQueue<String>(1000)
+        Thread {
+            val request = DefaultInvocationRequest()
+            request.pomFile = pomPath.toFile()
+            request.goals = listOf("dependency:tree -Dverbose")
+            val invoker = DefaultInvoker()
+            invoker.mavenHome = File(mavenHome)
+            invoker.setOutputHandler {
+                queue.put(it)
+            }
+            invoker.execute(request)
+        }.start()
+        return parse(queue)
+    }
 
     fun parseDocument(document: Path): MavenProject {
         val queue = ArrayBlockingQueue<String>(1000)
