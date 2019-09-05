@@ -12,6 +12,7 @@
         <module>crawler</module>
         <module>parser</module>
         <module>models</module>
+        <module>viewer</module>
     </modules>
 
     <properties>
@@ -21,6 +22,7 @@
         <junit-jupiter-engine.version>5.5.1</junit-jupiter-engine.version>
         <guava.version>28.0-jre</guava.version>
         <maven-invoker.version>3.0.1</maven-invoker.version>
+        <tornadofx.version>1.7.19</tornadofx.version>
     </properties>
 
     <dependencyManagement>
@@ -73,6 +75,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>models</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>no.tornado</groupId>
+            <artifactId>tornadofx</artifactId>
+            <version>${tornadofx.version}</version>
         </dependency>
     </dependencies>
     </dependencyManagement>
