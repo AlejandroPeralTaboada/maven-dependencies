@@ -20,7 +20,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <kotlin.version>1.3.50</kotlin.version>
         <junit-jupiter-engine.version>5.5.1</junit-jupiter-engine.version>
-        <guava.version>28.0-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <maven-invoker.version>3.0.1</maven-invoker.version>
         <tornadofx.version>1.7.19</tornadofx.version>
     </properties>
